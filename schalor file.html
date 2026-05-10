@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Hub & Academic Guide</title>
+    <style>
+        /* ========== Global Styles ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, 30px); }
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2em;
+            color: #2c3e50;
+            display: inline-block;
+            padding: 0 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section-title h2 .icon {
+            margin-right: 10px;
+        }
+        
+        .ai-section {
+            margin-bottom: 50px;
+        }
+        
+        .ai-section .section-title h2 {
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+            color: #00695c;
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        
+        .tool-card .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .tool-card .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .tool-card .card-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .tool-card .card-desc {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .tool-card .card-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .tool-card .card-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .academic-section {
+            margin-bottom: 50px;
+        }
+        
+        .academic-section .section-title h2 {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            color: #2e7d32;
+        }
+        
+        .article-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .article-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            border-left: 5px solid #4caf50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .article-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .article-info {
+            flex: 1;
+        }
+        
+        .article-info h3 {
+            font-size: 1.1em;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .article-info .article-desc {
+            color: #7f8c8d;
+            font-size: 0.85em;
+        }
+        
+        .article-link {
+            padding: 8px 18px;
+            background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.85em;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+        
+        .article-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(67, 160, 71, 0.4);
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+            .article-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .article-link {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            .section-title h2 {
+                font-size: 1.5em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            header { padding: 25px 15px; }
+            header h1 { font-size: 1.5em; }
+            .container { padding: 20px 15px; }
+            .tool-card { padding: 18px; }
+            .article-item { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AI Tools Hub & Academic Guide</h1>
+        <p>Your one-stop platform for cutting-edge AI tools and essential academic resources — fully accessible in China</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- ===== Part 1: AI Tools Hub ===== -->
+        <section class="ai-section">
+            <div class="section-title">
+                <h2><span class="icon">⚡</span>AI Tools Hub</h2>
+                <p style="margin-top: 10px; color: #7f8c8d;">Curated collection of mainstream AI tools to boost your productivity</p>
+            </div>
+            
+            <div class="tool-grid">
+                <!-- 1. ChatGPT -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #00c6ff, #0072ff); color: white;">🤖</div>
+                        <div class="card-title">ChatGPT</div>
+                    </div>
+                    <div class="card-desc">OpenAI's conversational AI assistant. Supports text generation, code writing, data analysis, and more.</div>
+                    <a class="card-link" href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 2. Claude -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #8E2DE2, #4A00E0); color: white;">🧠</div>
+                        <div class="card-title">Claude (Anthropic)</div>
+                    </div>
+                    <div class="card-desc">AI assistant known for safety and deep understanding. Excellent for long document processing and academic writing.</div>
+                    <a class="card-link" href="https://claude.ai" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 3. MedPeer (replacing Grammarly) -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #11998e, #38ef7d); color: white;">✍️</div>
+                        <div class="card-title">MedPeer</div>
+                    </div>
+                    <div class="card-desc">Academic English polishing and grammar check tool for researchers. Supports journal-specific style adjustment and scientific writing optimization.</div>
+                    <a class="card-link" href="https://www.medpeer.cn" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 4. MetaSoup (replacing Perplexity) -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #0d47a1, #42a5f5); color: white;">🔎</div>
+                        <div class="card-title">MetaSoup</div>
+                    </div>
+                    <div class="card-desc">AI-powered search engine providing real-time answers with cited sources. Strong Chinese language support for academic research and fact-checking.</div>
+                    <a class="card-link" href="https://metaso.cn" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 5. iTextMaster (replacing ChatPDF) -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #ff9a9e, #fecfef); color: white;">📄</div>
+                        <div class="card-title">iTextMaster</div>
+                    </div>
+                    <div class="card-desc">Multi-format document reader supporting PDF, Word, PPT, Excel, images, and more. Ask questions, get summaries, extract data instantly.</div>
+                    <a class="card-link" href="https://www.itextmaster.com" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 6. Tongyi Zhiwen (通义智文 - replacing SciSpace/Tongyi Reader) -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #a18cd1, #fbc2eb); color: white;">📚</div>
+                        <div class="card-title">Tongyi Zhiwen</div>
+                    </div>
+                    <div class="card-desc">Alibaba Cloud's AI reading assistant supporting PDF, Word, EPUB and more. Features structured summarization, document Q&A with source tracing, and bilingual translation.</div>
+                    <a class="card-link" href="https://tongyi.aliyun.com/zhiwen" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 7. DeepSeek -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe); color: white;">🔍</div>
+                        <div class="card-title">DeepSeek</div>
+                    </div>
+                    <div class="card-desc">Free AI assistant with strong math reasoning and coding. Supports 100k+ context. Excellent for academic paper analysis.</div>
+                    <a class="card-link" href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 8. Kimi -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: white;">📖</div>
+                        <div class="card-title">Kimi</div>
+                    </div>
+                    <div class="card-desc">Chinese AI with 2M token context. Perfect for long paper reading, Chinese academic writing, and document analysis.</div>
+                    <a class="card-link" href="https://kimi.moonshot.cn" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 9. Gemini -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">🌟</div>
+                        <div class="card-title">Gemini (Google)</div>
+                    </div>
+                    <div class="card-desc">Google's multimodal AI model supporting text, image, audio, and video inputs. Strong cross-disciplinary understanding.</div>
+                    <a class="card-link" href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 10. GitHub Copilot -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #ffecd2, #fcb69f); color: white;">💻</div>
+                        <div class="card-title">GitHub Copilot</div>
+                    </div>
+                    <div class="card-desc">AI pair programmer integrated into VS Code and other IDEs. Provides code completion, suggestions, and debugging support.</div>
+                    <a class="card-link" href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 11. Elicit -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); color: white;">📋</div>
+                        <div class="card-title">Elicit</div>
+                    </div>
+                    <div class="card-desc">AI research assistant that automates literature review, data extraction, and paper synthesis. Saves hours of manual work.</div>
+                    <a class="card-link" href="https://elicit.com" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+                
+                <!-- 12. Consensus -->
+                <div class="tool-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c); color: white;">📊</div>
+                        <div class="card-title">Consensus</div>
+                    </div>
+                    <div class="card-desc">AI research tool that uses advanced algorithms to find, summarize, and extract insights from academic papers.</div>
+                    <a class="card-link" href="https://consensus.app" target="_blank" rel="noopener noreferrer">Try Now</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ===== Part 2: Academic Guide for College Students (UPDATED - All China-Accessible) ===== -->
+        <section class="academic-section">
+            <div class="section-title">
+                <h2><span class="icon">📚</span>Academic Guide for College Students</h2>
+                <p style="margin-top: 10px; color: #7f8c8d;">Essential resources for academic writing, research, and study skills — all fully accessible in China</p>
+            </div>
+            
+            <div class="article-list">
+                <!-- 1. CNKI (replacing The Craft of Research) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>CNKI (China National Knowledge Infrastructure)</h3>
+                        <div class="article-desc">China's largest and most authoritative academic database. Covers 98% of Chinese journals, 300+ million papers, theses, and conference proceedings. Essential for paper writing and literature review.[1](@ref)[6](@ref)[7](@ref)</div>
+                    </div>
+                    <a class="article-link" href="https://www.cnki.net" target="_blank" rel="noopener noreferrer">Start Searching</a>
+                </div>
+                
+                <!-- 2. Wanfang Data (replacing A Manual for Writers) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>Wanfang Data</h3>
+                        <div class="article-desc">Top Chinese academic database, complementary to CNKI. Strong in science, engineering, medicine, and technology. Contains over 400 million scholarly records including journals, theses, and patents.[1](@ref)[9](@ref)[10](@ref)</div>
+                    </div>
+                    <a class="article-link" href="https://www.wanfangdata.com.cn" target="_blank" rel="noopener noreferrer">Start Searching</a>
+                </div>
+                
+                <!-- 3. Chinese University MOOC (replacing Studying at University - UCT) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>Chinese University MOOC</h3>
+                        <div class="article-desc">National online learning platform by Higher Education Press & NetEase. Features 10,000+ free courses from 867 universities, including 1,400+ national精品 courses. Covers all major disciplines.[4](@ref)[12](@ref)[13](@ref)</div>
+                    </div>
+                    <a class="article-link" href="https://www.icourse163.org" target="_blank" rel="noopener noreferrer">Start Learning</a>
+                </div>
+                
+                <!-- 4. NetEase Cloud Classroom (replacing Academic Writing Essentials) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>NetEase Cloud Classroom</h3>
+                        <div class="article-desc">Practical skills learning platform covering academic writing, IT, foreign languages, and career development. Many high-quality courses are free. Perfect for improving your academic English and writing skills.[4](@ref)[5](@ref)</div>
+                    </div>
+                    <a class="article-link" href="https://study.163.com" target="_blank" rel="noopener noreferrer">Start Learning</a>
+                </div>
+                
+                <!-- 5. VIP Chinese Journals + Zotero (replacing Zotero alone) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>VIP Chinese Journals (CQVIP)</h3>
+                        <div class="article-desc">Comprehensive Chinese journal retrieval platform covering natural sciences, engineering, and social sciences. Use with Zotero for reference management. A perfect combination for academic research.[2](@ref)</div>
+                    </div>
+                    <a class="article-link" href="https://www.cqvip.com" target="_blank" rel="noopener noreferrer">Start Researching</a>
+                </div>
+                
+                <!-- 6. Bilibili Learning Hub (replacing Coursera) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>Bilibili (B站) Learning Hub</h3>
+                        <div class="article-desc">China's largest free learning video platform. Thousands of university courses, academic lectures, skill tutorials, and research methodology guides — all completely free with no VPN required.[5](@ref)</div>
+                    </div>
+                    <a class="article-link" href="https://www.bilibili.com" target="_blank" rel="noopener noreferrer">Start Watching</a>
+                </div>
+                
+                <!-- 7. PaperRed (replacing Cite This For Me) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>PaperRed — AI Academic Writing Platform</h3>
+                        <div class="article-desc">All-in-one AI academic writing assistant. Supports topic generation, outline creation, literature search, paper drafting, citation formatting (APA/MLA/GB/T 7714), AI detection, and plagiarism checking.</div>
+                    </div>
+                    <a class="article-link" href="https://www.paperred.com" target="_blank" rel="noopener noreferrer">Start Writing</a>
+                </div>
+                
+                <!-- 8. National Center for Philosophy and Social Sciences (replacing Inside Higher Ed) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>National Center for Philosophy and Social Sciences</h3>
+                        <div class="article-desc">Free access to over 10 million philosophy and social science resources, including Chinese and foreign journals, books, and ancient texts. No registration required for basic access. Best alternative for AI ethics and academic integrity resources.[1](@ref)[3](@ref)</div>
+                    </div>
+                    <a class="article-link" href="https://www.ncpssd.org" target="_blank" rel="noopener noreferrer">Start Researching</a>
+                </div>
+                
+                <!-- 9. PaperPass (replacing Scribbr) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>PaperPass / Daoke Academic</h3>
+                        <div class="article-desc">Chinese academic writing assistants. PaperPass supports topic selection, literature search, and full paper generation. Daoke offers rich academic resources and citation tools. Perfect for thesis and dissertation writing.</div>
+                    </div>
+                    <a class="article-link" href="https://www.paperpass.com" target="_blank" rel="noopener noreferrer">Start Writing</a>
+                </div>
+                
+                <!-- 10. Duxiu Academic Search (replacing Google Scholar) -->
+                <div class="article-item">
+                    <div class="article-info">
+                        <h3>Duxiu Academic Search</h3>
+                        <div class="article-desc">China's largest Chinese literature search platform with 6.8 million Chinese books. Features chapter preview, full-text search, and document delivery. The best domestic alternative to Google Scholar for finding academic resources.[1](@ref)</div>
+                    </div>
+                    <a class="article-link" href="https://www.duxiu.com" target="_blank" rel="noopener noreferrer">Start Searching</a>
+                </div>
+            </div>
+        </section>
+        
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AI Tools Hub & Academic Guide | Empowering College Students Worldwide</p>
+        <p style="margin-top: 5px; font-size: 0.8em; opacity: 0.6;">Best viewed in Chrome / Edge | All resources fully accessible in China</p>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
